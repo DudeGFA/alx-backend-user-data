@@ -3,6 +3,7 @@
     Contains Class Auth
 """
 from flask import request
+from typing import List
 
 
 class Auth():
