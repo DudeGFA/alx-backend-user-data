@@ -103,7 +103,7 @@ class BasicAuth(Auth):
                 return None
             user_email, user_pwd = self.extract_user_credentials(
                 decoded_auth_header)
-            if user_email is None or user_pwd is None:
+            if user_email is None:
                 return None
             user = self.user_object_from_credentials(user_email, user_pwd)
             return user
