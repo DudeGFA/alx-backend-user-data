@@ -4,6 +4,7 @@
 """
 from flask import request
 from typing import List, TypeVar
+import re
 
 
 class Auth():
@@ -24,8 +25,11 @@ class Auth():
             return True
         if path in excluded_paths or (path + '/') in excluded_paths:
             return False
-        if (path + '*') in excluded_paths or path[:-1] in excluded_paths:
+        if path[:-1] in excluded_paths:
             return False
+        for excluded_path in excluded_paths:
+            if re.match(excluded_path, path):
+                return False
         return True
 
     def authorization_header(self, request=None) -> str:
