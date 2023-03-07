@@ -6,6 +6,7 @@ from .auth import Auth
 import base64
 from models.user import User
 from typing import TypeVar
+from flask import request
 
 
 class BasicAuth(Auth):
@@ -81,5 +82,30 @@ class BasicAuth(Auth):
                 return None
             else:
                 return user[0]
+        except Exception:
+            return None
+
+    def current_user(self, request=None) -> TypeVar('User'):
+        """
+            retrieves the User instance for a request
+        """
+        try:
+            auth_header = self.authorization_header(request)
+            if auth_header is None:
+                return None
+            extracted_auth_header = self.extract_base64_authorization_header(
+                auth_header)
+            if extracted_auth_header is None:
+                return None
+            decoded_auth_header = self.decoded_auth_header(
+                extracted_auth_header)
+            if decoded_auth_header is None:
+                return None
+            user_email, user_pwd = self.extract_user_credentials(
+                decoded_auth_header)
+            if user_email is None or user_pwd is None:
+                return None
+            user = self.user_object_from_credentials(user_email, user_pwd)
+            return user
         except Exception:
             return None
