@@ -39,7 +39,7 @@ def Forbidden(error) -> str:
     return jsonify({"error": "Forbidden"}), 403
 
 
-@app.before_request()
+@app.before_request
 def before_req():
     """
         filters each request
