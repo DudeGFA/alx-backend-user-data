@@ -98,7 +98,7 @@ class BasicAuth(Auth):
                         extr_ah)
                     if decode is not None:
                         user_email, user_pwd = self.extract_user_credentials(
-                            decoded)
+                            decode)
                         if user_email is not None:
                             return self.user_object_from_credentials(
                                 user_email, user_pwd)
