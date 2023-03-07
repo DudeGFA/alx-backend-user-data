@@ -94,7 +94,7 @@ class BasicAuth(Auth):
                 extr_ah = self.extract_base64_authorization_header(
                     auth_header)
                 if extr_ah is not None:
-                    decode = self.decoded_base64_authorization_header(
+                    decode = self.decode_base64_authorization_header(
                         extr_ah)
                     if decode is not None:
                         user_email, user_pwd = self.extract_user_credentials(
