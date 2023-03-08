@@ -19,6 +19,6 @@ class SessionAuth(Auth):
         """
         if user_id is None or not isinstance(user_id, str):
             return None
-        sessionID = uuid4()
+        sessionID = str(uuid4())
         user_id_by_session_id[sessionID] = user_id
         return sessionID
