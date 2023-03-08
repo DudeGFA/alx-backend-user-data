@@ -17,7 +17,7 @@ class SessionAuth(Auth):
         """
             creates a Session ID for a user_id
         """
-        if user_id is None or not isinstance(user_id, str()):
+        if user_id is None or not isinstance(user_id, str):
             return None
         sessionID = uuid4()
         user_id_by_session_id[sessionID] = user_id
