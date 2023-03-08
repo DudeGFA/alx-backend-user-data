@@ -2,12 +2,11 @@
 """
     Contains class SessionAuth
 """
-from auth import Auth
+from .auth import Auth
 
 
 class SessionAuth(Auth):
     """
-        Implements session
+        Implements session based
         authentication
     """
-    pass
