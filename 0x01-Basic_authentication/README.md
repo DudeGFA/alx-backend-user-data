@@ -1,6 +1,6 @@
 # Simple API
 
-Simple HTTP API for playing with `User` model.
+Implemented basic authentication in a simple HTTP API for playing with `User` model.
 
 
 ## Files
