@@ -30,8 +30,8 @@ class SessionExpAuth(SessionAuth):
         sessionID = super().create_session(user_id)
         if sessionID is None:
             return None
-        session_dict = {'user_id': user_id, 'created_at': datetime.now()}
-        self.user_id_by_session_id[sessionID] = session_dict
+        session_dictionary = {'user_id': user_id, 'created_at': datetime.now()}
+        self.user_id_by_session_id[sessionID] = session_dictionary
         return sessionID
 
     def user_id_for_session_id(self, session_id=None) -> str:
