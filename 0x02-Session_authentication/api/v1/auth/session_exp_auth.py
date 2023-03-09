@@ -27,7 +27,7 @@ class SessionExpAuth(SessionAuth):
         """
             Creates a new session
         """
-        sessionID = super().create_session()
+        sessionID = super().create_session(user_id)
         if sessionID is None:
             return None
         session_dict = {'user_id': user_id, 'created_at': datetime.now()}
