@@ -4,7 +4,7 @@
 """
 from .session_auth import SessionAuth
 from os import getenv
-from datetime import datetime
+from datetime import datetime, timedelta
 
 
 class SessionExpAuth(SessionAuth):
@@ -23,7 +23,7 @@ class SessionExpAuth(SessionAuth):
         except Exception:
             self.session_duration = 0
 
-    def create_session(self, user_id=None):
+    def create_session(self, user_id=None) -> str:
         """
             Creates a new session
         """
@@ -34,7 +34,7 @@ class SessionExpAuth(SessionAuth):
         self.user_id_by_session_id[sessionID] = session_dict
         return sessionID
 
-    def user_id_for_session_id(self, session_id=None):
+    def user_id_for_session_id(self, session_id=None) -> str:
         """
             returns a user_id
             for a particular sessionID
@@ -50,6 +50,7 @@ class SessionExpAuth(SessionAuth):
             'created_at')
         if creation_time is None:
             return None
-        if (creation_time + self.session_duration) < datetime.now():
+        if (creation_time + timedelta(
+                seconds=self.session_duration)) < datetime.now():
             return None
         return user_id_by_session_id[session_id].get('user_id')
