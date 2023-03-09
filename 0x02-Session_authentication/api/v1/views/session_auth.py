@@ -41,6 +41,12 @@ def login() -> str:
     methods=['DELETE'],
     strict_slashes=False)
 def logout() -> str:
+    """ DELETE /api/v1/auth_session/logout
+        logs out a user
+        by destroying a session
+    Return:
+      - empty json object
+    """
     from api.v1.app import auth
     if auth.destroy_session(request):
         return json.loads('{}'), 200
