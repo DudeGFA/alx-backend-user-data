@@ -3,10 +3,11 @@
      handles all routes for
      the Session authentication
 """
-from flask import request, make_response
+from flask import request, make_response, abort
 from models.user import User
 from os import getenv
 from api.v1.views import app_views
+import json
 
 
 @app_views.route('/auth_session/login', methods=['POST'], strict_slashes=False)
@@ -33,3 +34,15 @@ def login() -> str:
             return resp
 
     return {"error": "wrong password"}, 401
+
+
+@app_views.route(
+    '/auth_session/logout',
+    methods=['DELETE'],
+    strict_slashes=False)
+def logout() -> str:
+    from api.v1.app import auth
+    if auth.destroy_session(request):
+        return json.loads('{}'), 200
+    else:
+        abort(404)

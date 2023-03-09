@@ -6,6 +6,7 @@ from .auth import Auth
 from uuid import uuid4
 from models.user import User
 from typing import TypeVar
+from os import getenv
 
 
 class SessionAuth(Auth):
@@ -43,3 +44,21 @@ class SessionAuth(Auth):
         session_cookie = self.session_cookie(request)
         userID = self.user_id_by_session_id.get(session_cookie)
         return User.get(userID)
+
+    def destroy_session(self, request=None):
+        """
+            deatroys a session
+            returns True is session
+            is destroyed else False
+        """
+        if request is None:
+            return False
+        session_ID = self.session_cookie(request)
+        if session_ID is None:
+            return False
+        user_id = self.user_id_for_session_id(session_ID)
+        if user_id is None:
+            return False
+        else:
+            del self.user_id_by_session_id[session_ID]
+            return True
