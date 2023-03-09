@@ -2,7 +2,7 @@
 """
     Contains class SessionExpAuth
 """
-from session_auth import SessionAuth
+from .session_auth import SessionAuth
 from os import getenv
 from datetime import datetime
 
