@@ -5,6 +5,7 @@
 from .auth import Auth
 from uuid import uuid4
 from models.user import User
+from typing import TypeVar
 
 
 class SessionAuth(Auth):
