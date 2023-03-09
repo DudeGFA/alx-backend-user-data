@@ -14,13 +14,13 @@ class SessionDBAuth(SessionExpAuth):
         but with expiry and session database storage
     """
 
-    def create_session(self, user_id=None):
+    def create_session(self, user_id=None) -> str:
         """
             Craetes and stores new UserSession
             by it's sessionId
         """
         sessionID = super().create_session(user_id)
-        if sessionID is None or not isinstance(self, str):
+        if sessionID is None or not isinstance(sessionID, str):
             return None
         kwargs = {'user_id': user_id, 'session_id': sessionID}
         new_session = UserSession(**kwargs)
@@ -42,16 +42,16 @@ class SessionDBAuth(SessionExpAuth):
         if len(user_details) <= 0:
             return None
         if self.session_duration <= 0:
-            return user_details.get('user_id')
+            return user_details[0].user_id
         creation_time = user_details[0].created_at
         if creation_time is None:
             return None
         if (creation_time + timedelta(
                 seconds=self.session_duration)) < datetime.now():
             return None
-        return user_details.user_id
+        return user_details[0].user_id
 
-    def destroy_session(self, request=None):
+    def destroy_session(self, request=None) -> bool:
         """
             deatroys a session
             returns True is session
