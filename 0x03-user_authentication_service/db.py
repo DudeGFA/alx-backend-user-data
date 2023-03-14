@@ -42,4 +42,5 @@ class DB:
         """
         new_user = User(email=email_, hashed_password=hashed_password_)
         self._session.add(new_user)
+        self._session.commit()
         return new_user
