@@ -61,7 +61,7 @@ class DB:
                     return user
         raise NoResultFound
 
-    def update_user(self, user_id, **kwargs) -> User:
+    def update_user(self, user_id: int, **kwargs) -> User:
         """
             update a user's attributes
             Args: arbitrary
