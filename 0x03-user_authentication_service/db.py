@@ -67,9 +67,12 @@ class DB:
             Args: arbitrary
             returns: None
         """
-        user = self.find_user_by(id=user_id)
+        try:
+            user = self.find_user_by(id=user_id)
+        except NoResultFound:
+            raise ValueError
         for key, value in kwargs.items():
             if key not in User.__dict__:
-                raise ValueError()
+                raise ValueError
             setattr(user, key, value)
         return None
