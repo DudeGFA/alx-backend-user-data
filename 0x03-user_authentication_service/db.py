@@ -75,4 +75,5 @@ class DB:
             if key not in User.__dict__:
                 raise ValueError
             setattr(user, key, value)
+            self._session.commit()
         return None
