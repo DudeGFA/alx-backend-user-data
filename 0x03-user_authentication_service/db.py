@@ -59,3 +59,16 @@ class DB:
                 if getattr(user, key) == value:
                     return user
         raise NoResultFound
+
+    def update_user(self, user_id, **kwargs) -> User:
+        """
+            update a user's attributes
+            Args: arbitrary
+            returns: None
+        """
+        user = self.find_user_by(id=user_id)
+        for key, value in kwargs.items():
+            if key not in User.__dict__:
+                raise ValueError()
+            setattr(user, key, value)
+        return None
