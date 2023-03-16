@@ -100,9 +100,9 @@ def get_reset_password_token() -> str:
 
 
 @app.route('/reset_password', methods=['PUT'], strict_slashes=False)
-def get_reset_password_token() -> str:
+def update_password() -> str:
     """
-        resets a user's password
+        Updates a user's password
         Args:
             email: str - user's email
             reset_token: str - password reset token
