@@ -2,8 +2,10 @@
 """
     flask app
 """
-from flask import Flask, jsonify, request, make_response, abort
+from flask import (
+    Flask, jsonify, request, make_response, abort, redirect, url_for)
 from auth import Auth
+from user import User
 
 
 AUTH = Auth()
@@ -49,6 +51,20 @@ def login() -> str:
         return resp
     else:
         abort(401)
+
+
+@app.route('/sessions', methods=['DELETE'], strict_slashes=False)
+def logout() -> str:
+    """
+        Logs out a user
+        and destroys a session
+    """
+    sessionID = request.cookies.get('session_id')
+    user = AUTH.get_user_from_session_id(sessionID)
+    if user is not None:
+        AUTH.destroy_session(user.id)
+        return redirect(url_for('welcome'))
+    abort(403)
 
 
 if __name__ == "__main__":
