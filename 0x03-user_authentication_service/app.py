@@ -34,7 +34,7 @@ def users() -> str:
 
 
 @app.route('/sessions', methods=['POST'], strict_slashes=False)
-def login() -> str:
+def login() -> response:
     """
         end point to login a user
     """
