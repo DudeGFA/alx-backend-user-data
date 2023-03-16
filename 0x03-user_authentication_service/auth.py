@@ -55,6 +55,7 @@ class Auth:
         """
         return str(uuid4())
 
+
 def _hash_password(password: str) -> bytes:
     """
         Args:
