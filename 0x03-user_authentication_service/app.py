@@ -2,7 +2,7 @@
 """
     flask app
 """
-from flask import Flask, jsonify, request, make_response, abort, response
+from flask import Flask, jsonify, request, make_response, abort
 from auth import Auth
 
 
@@ -34,7 +34,7 @@ def users() -> str:
 
 
 @app.route('/sessions', methods=['POST'], strict_slashes=False)
-def login() -> response:
+def login() -> str:
     """
         end point to login a user
     """
