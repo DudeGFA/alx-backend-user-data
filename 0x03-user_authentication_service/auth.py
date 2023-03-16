@@ -102,6 +102,20 @@ class Auth:
         except NoResultFound:
             raise ValueError
 
+    def update_password(reset_token: str, password: str):
+        """
+            Updates a user's password
+            Args:
+                reset_token: str - password reset token
+                password: user's new password
+        """
+        try:
+            user = self._db.find_user_by(reset_token=reset_token)
+            hash_pwd = _hash_password(password)
+            self._db.update_user(user.id, hashed_password=hash_pwd)
+        except NoResultFound:
+            raise ValueError
+
 
 def _generate_uuid() -> str:
     """
