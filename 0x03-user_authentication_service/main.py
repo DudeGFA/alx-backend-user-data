@@ -11,7 +11,7 @@ def register_user(email: str, password: str) -> None:
         tests POST /users endpoint
     """
     resp = requests.post(
-        'localhost:500/users',
+        'localhost:5000/users',
         data={
             'email': email,
             'password': password})
