@@ -2,7 +2,7 @@
 ALX Software engineering program Backend user data tasks
 
 ### [0x01. Basic authentication](./0x00-personal_data/)
-In this project, you will implement a Session Authentication. You are not allowed to install any other module.
+In this project, you will implement a Basic Authentication. You are not allowed to install any other module.
 
 In the industry, you should not implement your own Session authentication system and use a module or framework that doing it for you (like in Python-Flask: [Flask-HTTPAuth](https://intranet.alxswe.com/rltoken/_ZTQTaMKjx1S_xATshexkA)). Here, for the learning purpose, we will walk through each step of this mechanism to understand it by doing.
 
